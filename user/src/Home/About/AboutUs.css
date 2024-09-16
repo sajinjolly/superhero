@@ -1,0 +1,134 @@
+.aboutus-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background: url('../../Images/BgmainHome.jpg') no-repeat center center;
+    background-size: cover;
+    filter: blur(0.3px);
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 88%;
+    background: transparent;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 10;
+}
+
+.navbar-logo {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Dela Gothic One", sans-serif;
+
+    color: #c0aa50;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-menu p {
+    color: #c0aa50;
+    cursor: pointer;
+    font-family: "Dela Gothic One", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.pages {
+    height: 100vh;
+    position: relative;
+    padding-top: 60px; 
+}
+
+.page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.torchlight-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: none;
+    background: radial-gradient(
+        circle 150px at var(--mouse-x) var(--mouse-y),
+        rgba(255, 255, 0, 0.1) 10%,
+        transparent 30%,
+        rgba(0, 0, 0, 0.7) 70%
+    );
+    mask-image: radial-gradient(
+        circle 150px at var(--mouse-x) var(--mouse-y),
+        rgba(255, 255, 255, 1) 30%,
+        rgba(0, 0, 0, 0.95) 100%
+    );
+    pointer-events: none;
+}
+
+.intro-text {
+    text-align: center;
+    color: white;
+    transition: opacity 1s ease-in-out;
+    padding: 15px;
+}
+
+.page-title {
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    color: #a18f48;
+    font-size: 18px;
+}
+
+.content-text {
+    font-size: 1.5rem;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.page-image {
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .navbar-logo {
+        font-size: 1.2rem;
+        color: #e4c95c;
+    }
+
+    .page-title {
+        font-size: 18px;
+        color: #ebd375;
+    }
+
+    .content-text {
+        font-size: 1rem;
+    }
+
+    .page-image {
+        height: auto;
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 18px;
+    }
+
+    .content-text {
+        font-size: 0.875rem;
+    }
+}

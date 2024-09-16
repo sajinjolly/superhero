@@ -1,0 +1,82 @@
+.gri-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.gri-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../Images/BgmainHome.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    padding-top: 50px; 
+}
+
+.gri-page {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fade {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.gri-title {
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 400;
+    color: #a18f48;
+    margin-bottom: 20px;
+}
+
+.gri-input, .gri-textarea {
+    width: 96%;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.gri-navigation {
+    display: flex;
+    justify-content: space-between;
+}
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+.gri-back-btn, .gri-next-btn, .gri-submit-btn {
+    padding: 10px 20px;
+    background-color: #a18f48;
+    color: #000;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-family: "Dela Gothic One", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.gri-back-btn:hover, .gri-next-btn:hover, .gri-submit-btn:hover {
+    background-color: #f7c331;
+}

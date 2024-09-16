@@ -1,0 +1,153 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('../images/Batmanbg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding: 20px;
+  }
+  
+  .login-container h2 {
+    font-size: 2rem;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #8b7729;
+  }
+  
+  .login-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-container input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .login-container button {
+    padding: 10px;
+    background-color: #c0aa50;
+    border: none;
+    border-radius: 4px;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #000;
+    cursor: pointer;
+  }
+  
+  .login-container button:hover {
+    background-color: #000;
+    color: #c0aa50;
+  }
+  
+  .login-container .error {
+    color: #dc3545;
+    margin-top: 10px;
+    font-size: 0.875rem;
+  }
+  
+  .login-container .signup-link {
+    margin-top: 15px;
+    font-family: "Dela Gothic One", sans-serif;
+    color: #fff;
+  }
+  
+  .login-container .link {
+    color: #c0aa50;
+    cursor: pointer;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: bold;
+  }
+  
+  .login-container .link:hover {
+    text-decoration: underline;
+  }
+  
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .number-circle-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .number-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #c0aa50;
+    color: #000;
+    font-size: 1.5rem;
+    display: flex;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .popup-content-h3{
+    font-size: 1.5rem;
+    font-family: "Dela Gothic One", sans-serif;
+    color: #000000;
+  }
+  .number-circle:hover {
+    background-color: #000;
+    color: #c0aa50;
+  }
+  
+  @media (max-width: 600px) {
+    .login-container {
+      padding: 10px;
+    }
+  
+    .login-container h2 {
+      font-size: 1.5rem;
+    }
+  
+    .login-container form {
+      width: 100%;
+      max-width: 90%;
+    }
+  
+    .login-container input {
+      font-size: 0.875rem;
+    }
+  
+    .login-container button {
+      font-size: 0.875rem;
+    }
+  }
+  
