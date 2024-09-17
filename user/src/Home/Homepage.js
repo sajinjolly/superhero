@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -10,6 +11,9 @@ const HomePage = () => {
   const [touchEnd, setTouchEnd] = useState(0);
   const pagesRef = useRef(null);
   const navigate = useNavigate();
+  
+  let scrollTimeout = null;
+  let touchTimeout = null;
 
   const updateCurrentPage = (newPage) => {
     setCurrentPage((prev) => Math.max(0, Math.min(newPage, pages.length - 1)));
@@ -37,11 +41,14 @@ const HomePage = () => {
   };
 
   const handleScroll = (e) => {
-    if (e.deltaY > 0) {
-      updateCurrentPage(currentPage + 1); 
-    } else {
-      updateCurrentPage(currentPage - 1); 
-    }
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      if (e.deltaY > 0) {
+        updateCurrentPage(currentPage + 1); 
+      } else {
+        updateCurrentPage(currentPage - 1); 
+      }
+    }, 180); 
   };
 
   const handleTouchStart = (e) => {
@@ -53,11 +60,14 @@ const HomePage = () => {
   };
 
   const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 50) {
-      updateCurrentPage(currentPage + 1);
-    } else if (touchEnd - touchStart > 50) {
-      updateCurrentPage(currentPage - 1);
-    }
+    clearTimeout(touchTimeout);
+    touchTimeout = setTimeout(() => {
+      if (touchStart - touchEnd > 50) {
+        updateCurrentPage(currentPage + 1);
+      } else if (touchEnd - touchStart > 50) {
+        updateCurrentPage(currentPage - 1);
+      }
+    }, 180); 
   };
 
   useEffect(() => {
@@ -83,31 +93,31 @@ const HomePage = () => {
   return (
     <div className="homepage-container">
       <div className="torchlight-effect">
-        <div
-          className="pages"
-          ref={pagesRef}
-          style={{ transform: `translateY(-${currentPage * 100}vh)`, transition: "transform 1.5s ease-in-out" }}  // Slower transition
-        >
+        <TransitionGroup className="pages" ref={pagesRef}>
           {pages.length > 0 ? (
-            pages.map((page, index) => (
-              <div key={index} className={`page page-${currentPage} fade-in`}>
+            <CSSTransition
+              key={currentPage}
+              timeout={1500}
+              classNames="page"
+            >
+              <div className="page">
                 <div className="content">
                   <div className="intro-text">
-                    <h1 className="home-title">{page.title}</h1>
-                    <p className="homecontent-text">{page.content}</p>
-                    {page.image && <img src={page.image} alt="Page Visual" className="page-image" />}
+                    <h1 className="home-title">{pages[currentPage].title}</h1>
+                    <p className="homecontent-text">{pages[currentPage].content}</p>
+                    {pages[currentPage].image && <img src={pages[currentPage].image} alt="Page Visual" className="page-image" />}
                   </div>
                 </div>
               </div>
-            ))
+            </CSSTransition>
           ) : (
             <div>Loading...</div>  
           )}
-        </div>
+        </TransitionGroup>
       </div>
       <p className="firstcontent">Have a Concern?</p>
       <button className="home-grievance-btn" onClick={handleGrievanceClick}>
-      Submit Your Grievance
+        Submit Your Grievance
       </button>
     </div>
   );

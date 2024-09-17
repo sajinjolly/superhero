@@ -9,24 +9,28 @@
 
 .pages {
     height: 100vh;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 1s ease-in-out;
     position: relative;
 }
-.firstcontent{
+
+.firstcontent {
     color: aliceblue;
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 10px;
-    font-family: inter;
-  font-weight: 300;
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    z-index: 1;
 }
+
 .page {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
 }
 
 .torchlight-effect {
@@ -67,45 +71,67 @@
     max-width: 90%;
     margin: 0 auto;
 }
-.home-content-text{
-font-family: inter;
-font-size: 16px;
+
+.home-content-text {
+    font-family: Inter, sans-serif;
+    font-size: 16px;
     line-height: 1.6;
     font-weight: 300;
 }
-.home-title{
-    font-family: Merriweather;
-    font-weight: 600;
-    font-style: normal;
-    color: #a18f48;
 
+.home-title {
+    font-family: Merriweather, serif;
+    font-weight: 600;
+    color: #a18f48;
 }
+
 .home-grievance-btn {
     position: fixed;
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 10px;
-    font-family: "Sofadi One", system-ui;
+    font-family: "Sofadi One", system-ui, sans-serif;
     font-weight: 600;
-  font-style: normal;
     background-color: rgba(0, 0, 0, 0.7);
     color: #c0aa50;
-    border: 2px solid #fada5e ;
+    border: 2px solid #fada5e;
     font-size: 18px;
     cursor: pointer;
     z-index: 1;
 }
 
-.grievance-btn:hover {
-    background-color: #fbec5d ;
+.home-grievance-btn:hover {
+    background-color: #fbec5d;
+    color: black;
 }
 
 .page-image {
-     height: auto;
-      max-height: 200px;
-      width: 100%;
-      max-height: 350px;
+    height: auto;
+    width: 100%;
+    max-height: 350px;
+}
+
+.page-enter {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.page-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-exit-active {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
 }
 
 @media (max-width: 768px) {
@@ -123,8 +149,6 @@ font-size: 16px;
     }
 
     .page-image {
-        height: auto;
-        width: 100%;
         max-height: 300px;
     }
 }
@@ -144,8 +168,6 @@ font-size: 16px;
     }
 
     .page-image {
-        height: auto;
-        width: 100%;
         max-height: 200px;
     }
 }
