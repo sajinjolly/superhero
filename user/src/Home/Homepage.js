@@ -105,8 +105,9 @@ const HomePage = () => {
           )}
         </div>
       </div>
+      <p className="firstcontent">Have a Concern?</p>
       <button className="home-grievance-btn" onClick={handleGrievanceClick}>
-        Grievance
+      Submit Your Grievance
       </button>
     </div>
   );

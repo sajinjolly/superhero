@@ -7,30 +7,32 @@ const AboutUsEdits = ({ token }) => {
   const [sections, setSections] = useState([]);
   const [editingSection, setEditingSection] = useState(null);
   const [newSection, setNewSection] = useState({ title: '', content: '' });
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
+  // Function to fetch sections
+  const fetchSections = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/aboutus', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setSections(res.data || []);
+    } catch (error) {
+      console.error('Failed to fetch sections', error);
+    }
+  };
+
+  // Fetch sections initially
   useEffect(() => {
-    const fetchSections = async () => {
-      try {
-        const res = await axios.get('http://localhost:5000/api/aboutus', {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setSections(res.data || []);
-      } catch (error) {
-        console.error('Failed to fetch sections', error);
-      }
-    };
-
     fetchSections();
   }, [token]);
 
   const handleAddSection = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/aboutus', newSection, {
+      await axios.post('http://localhost:5000/api/aboutus', newSection, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setSections([...sections, res.data.section]);
       setNewSection({ title: '', content: '' });
+      fetchSections();  // Refresh the list after adding
     } catch (error) {
       console.error('Failed to add section', error);
     }
@@ -38,11 +40,11 @@ const AboutUsEdits = ({ token }) => {
 
   const handleUpdateSection = async (id) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/aboutus/${id}`, editingSection, {
+      await axios.put(`http://localhost:5000/api/aboutus/${id}`, editingSection, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setSections(sections.map((section) => (section._id === id ? res.data : section)));
       setEditingSection(null);
+      fetchSections();  // Refresh the list after updating
     } catch (error) {
       console.error('Failed to update section', error);
     }
@@ -53,7 +55,7 @@ const AboutUsEdits = ({ token }) => {
       await axios.delete(`http://localhost:5000/api/aboutus/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setSections(sections.filter((section) => section._id !== id));
+      fetchSections();  // Refresh the list after deleting
     } catch (error) {
       console.error('Failed to delete section', error);
     }

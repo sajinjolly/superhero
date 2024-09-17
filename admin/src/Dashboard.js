@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom'; 
-import './Dashboard.css'; 
+import { Link, useNavigate } from 'react-router-dom';
+import './Dashboard.css';
+import { FaCog } from 'react-icons/fa';
 
 const Dashboard = ({ token }) => {
   const [grievances, setGrievances] = useState([]);
   const [filter, setFilter] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const [showSettings, setShowSettings] = useState(false);
   const navigate = useNavigate();
+  const settingsRef = useRef(null);
 
   useEffect(() => {
     const fetchGrievances = async () => {
@@ -16,10 +19,12 @@ const Dashboard = ({ token }) => {
         const res = await axios.get('http://localhost:5000/api/grievance/grievances', {
           headers: { Authorization: `Bearer ${token}` }
         });
+        console.log('Fetched grievances:', res.data);
         setGrievances(res.data);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching grievances', error);
+        console.error('Error fetching grievances:', error.response ? error.response.data : error.message);
+        setLoading(false);
       }
     };
 
@@ -37,16 +42,33 @@ const Dashboard = ({ token }) => {
         )
       );
     } catch (error) {
-      console.error('Failed to update grievance status', error);
+      console.error('Failed to update grievance status:', error.response ? error.response.data : error.message);
     }
   };
 
   const filteredGrievances = grievances
     .filter((grievance) => grievance.status.includes(filter))
-    .filter((grievance) => 
-      (grievance.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      grievance.complaint?.toLowerCase().includes(searchTerm.toLowerCase()))
+    .filter((grievance) =>
+      (grievance.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        grievance.complaint?.toLowerCase().includes(searchTerm.toLowerCase()))
     );
+
+  const handleLogout = () => {
+    navigate('/');
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (settingsRef.current && !settingsRef.current.contains(event.target)) {
+        setShowSettings(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="dashboard-container">
@@ -56,7 +78,17 @@ const Dashboard = ({ token }) => {
         <Link to="/about-us">About Us</Link>
       </div>
       <div className="main-content">
-        <h2>Grievance Dashboard</h2>
+        <div className="header">
+          <h2>Grievance Dashboard</h2>
+          <div className="settings-icon" onClick={() => setShowSettings(!showSettings)}>
+            <FaCog size={24} />
+          </div>
+          {showSettings && (
+            <div className="settings-dropdown" ref={settingsRef}>
+              <button className="logout-button" onClick={handleLogout}>Logout</button>
+            </div>
+          )}
+        </div>
 
         <input
           type="text"

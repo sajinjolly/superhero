@@ -40,8 +40,8 @@
 }
 
 .gri-title {
-    font-family: "Dela Gothic One", sans-serif;
-    font-weight: 400;
+    font-family: "Signika Negative", sans-serif;
+    font-weight: 600;
     color: #a18f48;
     margin-bottom: 20px;
 }
@@ -63,6 +63,7 @@
     color: red;
     font-size: 14px;
     margin-top: 5px;
+    font-family: "Sofadi One", system-ui;
   }
   
 .gri-back-btn, .gri-next-btn, .gri-submit-btn {
@@ -72,11 +73,14 @@
     border: none;
     border-radius: 20px;
     font-size: 1rem;
-    font-family: "Dela Gothic One", sans-serif;
+    font-family: "Sofadi One", system-ui;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
 
 .gri-back-btn:hover, .gri-next-btn:hover, .gri-submit-btn:hover {
     background-color: #f7c331;
+}
+.gri-input::placeholder, .gri-textarea::placeholder {
+    font-family: "Sofadi One", system-ui;
 }

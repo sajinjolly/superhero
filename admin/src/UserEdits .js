@@ -9,24 +9,26 @@ const UserEdits = ({ token }) => {
   const [newPage, setNewPage] = useState({ title: '', content: '' });
   const navigate = useNavigate(); 
 
-  useEffect(() => {
-    const fetchPages = async () => {
-      try {
-        const res = await axios.get('http://localhost:5000/api/homepage');
-        setPages(res.data || []); 
-      } catch (error) {
-        console.error('Failed to fetch pages', error);
-      }
-    };
+  // Fetch pages function to reuse
+  const fetchPages = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/homepage');
+      setPages(res.data || []); 
+    } catch (error) {
+      console.error('Failed to fetch pages', error);
+    }
+  };
 
+  // Initial fetch on component mount
+  useEffect(() => {
     fetchPages();
   }, []);
 
   const handleAddPage = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/homepage', newPage);
-      setPages([...pages, res.data.page]);
+      await axios.post('http://localhost:5000/api/homepage', newPage);
       setNewPage({ title: '', content: '' });
+      fetchPages(); // Refetch pages after adding
     } catch (error) {
       console.error('Failed to add page', error);
     }
@@ -35,8 +37,8 @@ const UserEdits = ({ token }) => {
   const handleUpdatePage = async (id) => {
     try {
       await axios.put(`http://localhost:5000/api/homepage/${id}`, editingPage);
-      setPages(pages.map((page) => (page._id === id ? editingPage : page)));
       setEditingPage(null);
+      fetchPages(); // Refetch pages after updating
     } catch (error) {
       console.error('Failed to update page', error);
     }
@@ -45,7 +47,7 @@ const UserEdits = ({ token }) => {
   const handleDeletePage = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/homepage/${id}`);
-      setPages(pages.filter((page) => page._id !== id));
+      fetchPages(); // Refetch pages after deletion
     } catch (error) {
       console.error('Failed to delete page', error);
     }
@@ -53,7 +55,7 @@ const UserEdits = ({ token }) => {
 
   return (
     <div className="user-edits-container">
-            <button className="About-back-button" onClick={() => navigate(-1)}>← Back</button>
+      <button className="About-back-button" onClick={() => navigate(-1)}>← Back</button>
       <h2>Edit Homepage</h2>
 
       <div className="new-page-form">

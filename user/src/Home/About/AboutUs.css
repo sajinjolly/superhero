@@ -23,8 +23,7 @@
 .navbar-logo {
     font-size: 18px;
     font-weight: 600;
-    font-family: "Dela Gothic One", sans-serif;
-
+    font-family: "Sofadi One", system-ui;
     color: #c0aa50;
 }
 
@@ -37,7 +36,7 @@
 .navbar-menu p {
     color: #c0aa50;
     cursor: pointer;
-    font-family: "Dela Gothic One", sans-serif;
+    font-family: "Sofadi One", system-ui;
     font-size: 18px;
     font-weight: 600;
 }

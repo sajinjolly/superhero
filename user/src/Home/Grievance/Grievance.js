@@ -19,7 +19,7 @@ const Grievance = () => {
   const handleNext = () => {
     setIsAnimating(true); 
     setTimeout(() => {
-      setCurrentPage((prev) => Math.min(prev + 1, 4));
+      setCurrentPage((prev) => Math.min(prev + 1, pages.length - 1));
       setIsAnimating(false);
     }, 500);
   };
