@@ -9,7 +9,7 @@ const authRoutes = require('./routes/authroutes');  // Import auth routes
 // Import new routes
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 3001;
 
 // Connect to MongoDB
 connectDB();
