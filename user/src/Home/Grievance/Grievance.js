@@ -49,7 +49,7 @@ const Grievance = () => {
   const handleSubmit = async () => {
     if (!emailError) {
       try {
-        await axios.post(`${process.env.API_HOST}/api/grievance/grievances`, formData);
+        await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/grievance/grievances`, formData);
         alert('Grievance submitted successfully!');
         navigate('/'); 
       } catch (error) {

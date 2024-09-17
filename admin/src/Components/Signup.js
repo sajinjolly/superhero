@@ -16,7 +16,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await axios.post(`${process.env.API_HOST}/api/auth/signup`, { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/signup`, { email, password });
       setMessage('Signup successful. Please log in.');
       setEmail('');
       setPassword('');

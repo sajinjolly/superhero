@@ -12,7 +12,7 @@ const AboutUsEdits = ({ token }) => {
   // Function to fetch sections
   const fetchSections = async () => {
     try {
-      const res = await axios.get(`${process.env.API_HOST}/api/aboutus`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/aboutus`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSections(res.data || []);
@@ -28,7 +28,7 @@ const AboutUsEdits = ({ token }) => {
 
   const handleAddSection = async () => {
     try {
-      await axios.post(`${process.env.API_HOST}/api/aboutus`, newSection, {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/aboutus`, newSection, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setNewSection({ title: '', content: '' });
@@ -40,7 +40,7 @@ const AboutUsEdits = ({ token }) => {
 
   const handleUpdateSection = async (id) => {
     try {
-      await axios.put(`http://API_HOST/api/aboutus/${id}`, editingSection, {
+      await axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/aboutus/${id}`, editingSection, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setEditingSection(null);
@@ -52,7 +52,7 @@ const AboutUsEdits = ({ token }) => {
 
   const handleDeleteSection = async (id) => {
     try {
-      await axios.delete(`http://API_HOST/api/aboutus/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/aboutus/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchSections();  // Refresh the list after deleting

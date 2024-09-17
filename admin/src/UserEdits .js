@@ -12,7 +12,7 @@ const UserEdits = ({ token }) => {
   // Fetch pages function to reuse
   const fetchPages = async () => {
     try {
-      const res = await axios.get(`${process.env.API_HOST}/api/homepage`);
+      const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/homepage`);
       setPages(res.data || []); 
     } catch (error) {
       console.error('Failed to fetch pages', error);
@@ -26,7 +26,7 @@ const UserEdits = ({ token }) => {
 
   const handleAddPage = async () => {
     try {
-      await axios.post('${process.env.API_HOST}/api/homepage', newPage);
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/homepage`, newPage);
       setNewPage({ title: '', content: '' });
       fetchPages(); // Refetch pages after adding
     } catch (error) {
@@ -36,7 +36,7 @@ const UserEdits = ({ token }) => {
 
   const handleUpdatePage = async (id) => {
     try {
-      await axios.put(`${process.env.API_HOST}/api/homepage/${id}`, editingPage);
+      await axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/homepage/${id}`, editingPage);
       setEditingPage(null);
       fetchPages(); // Refetch pages after updating
     } catch (error) {
@@ -46,7 +46,7 @@ const UserEdits = ({ token }) => {
 
   const handleDeletePage = async (id) => {
     try {
-      await axios.delete(`${process.env.API_HOST}/api/homepage/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/homepage/${id}`);
       fetchPages(); // Refetch pages after deletion
     } catch (error) {
       console.error('Failed to delete page', error);

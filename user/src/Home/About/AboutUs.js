@@ -18,7 +18,7 @@ const AboutUs = () => {
   useEffect(() => {
     const fetchPages = async () => {
       try {
-        const res = await axios.get(`${process.env.API_HOST}/api/aboutus`);
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/aboutus`);
         setPages([{ title: "About Us", content: "" }, ...res.data]);
       } catch (error) {
         console.error('Error fetching pages:', error);

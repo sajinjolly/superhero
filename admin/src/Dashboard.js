@@ -16,7 +16,7 @@ const Dashboard = ({ token }) => {
   useEffect(() => {
     const fetchGrievances = async () => {
       try {
-        const res = await axios.get(`${process.env.API_HOST}/api/grievance/grievances`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/grievance/grievances`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         console.log('Fetched grievances:', res.data);
@@ -33,7 +33,7 @@ const Dashboard = ({ token }) => {
 
   const handleStatusUpdate = async (id, status) => {
     try {
-      await axios.put(`${process.env.API_HOST}/api/grievance/grievances/${id}`, { status }, {
+      await axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/grievance/grievances/${id}`, { status }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setGrievances((prevGrievances) =>
