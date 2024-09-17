@@ -18,7 +18,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchPages = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/homepage');
+        const res = await axios.get(`${process.env.API_HOST}/api/homepage`);
         setPages([{ title: "Batman", content: "" }, ...res.data]);  
       } catch (error) {
         console.error('Error fetching pages:', error);

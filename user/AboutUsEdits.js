@@ -40,7 +40,7 @@ const AboutUsEdits = ({ token }) => {
 
   const handleUpdateSection = async (id) => {
     try {
-      await axios.put(`${process.env.API_HOST}/api/aboutus/${id}`, editingSection, {
+      await axios.put(`http://API_HOST/api/aboutus/${id}`, editingSection, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setEditingSection(null);
@@ -52,7 +52,7 @@ const AboutUsEdits = ({ token }) => {
 
   const handleDeleteSection = async (id) => {
     try {
-      await axios.delete(`${process.env.API_HOST}/api/aboutus/${id}`, {
+      await axios.delete(`http://API_HOST/api/aboutus/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchSections();  // Refresh the list after deleting
